@@ -1,0 +1,16 @@
+INFO: 2020/04/23 18:43:59 [200 POST /dashboardComponent 698.324µs]
+2020/04/23 19:38:15 Config file changed: /home/burak/go/src/common_dashboard_backend/config_test.yml APP: Catalogue Backend
+2020/04/23 19:38:15 Config file changed: /home/burak/go/src/common_dashboard_backend/config_test.yml APP: Catalogue Backend
+INFO: 2020/04/23 20:40:20 [PONG]
+INFO: 2020/04/23 20:45:18 [200 POST /dashboardComponent 642.898µs]
+INFO: 2020/04/23 20:45:38 [200 GET /dashboardComponent 1.175074ms]
+INFO: 2020/04/23 21:29:27 [PONG]
+INFO: 2020/04/23 21:29:50 [PONG]
+INFO: 2020/04/23 21:30:41 [200 POST /dashboardComponent 633.818µs]
+INFO: 2020/04/23 21:30:53 [200 GET /dashboardComponent/deney 1.237952ms]
+INFO: 2020/04/23 21:53:44 [PONG]
+INFO: 2020/04/23 22:56:38 [PONG]
+INFO: 2020/04/23 22:58:52 [200 POST /dashboardComponent/deney1 1.05591ms]
+INFO: 2020/04/23 22:59:08 [200 GET /dashboardComponent/deney1 1.885123ms]
+2020/04/23 23:13:03 Config file changed: /home/burak/go/src/common_dashboard_backend/config_test.yml APP: Catalogue Backend
+2020/04/23 23:13:03 Config file changed: /home/burak/go/src/common_dashboard_backend/config_test.yml APP: Catalogue Backend
