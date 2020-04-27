@@ -5,6 +5,6 @@ import (
 )
 
 type DashboardUseCases interface {
-	CreateComponent(data entities.DashboardPanel, redisKey string) *entities.ErrorType
-	GetComponent(redisKey string) (data entities.DashboardPanel, er *entities.ErrorType)
+	CreateComponent(data string, redisKey string) *entities.ErrorType
+	GetComponent(redisKey string) (data string, er *entities.ErrorType)
 }

@@ -8,8 +8,6 @@ import (
 	"log"
 	"os"
 
-	// . "common_dashboard_backend/common/projectArch/interactors"
-
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
 )
@@ -21,11 +19,6 @@ type Specification struct {
 
 	LogFile string
 	Debug   bool
-
-	// MediaPath string
-	//Mode        int
-	//StartDate   int
-	//EndDate     int
 }
 
 type Environment struct {
@@ -40,7 +33,7 @@ var logFile *os.File
 func main() {
 	var err error
 
-	viper.SetConfigName("config_test")
+	viper.SetConfigName("config")
 	viper.SetConfigType("yml")
 	// viper.SetConfigName("config.yml")
 
@@ -56,8 +49,8 @@ func main() {
 	s.RedisHostProd = viper.GetString("app.redis.host.prod")
 	s.RedisPort = viper.GetString("app.redis.port")
 
-	s.LogFile = viper.GetString("dashboard.log.file")
-	s.Debug = viper.GetBool("app.log.debug")
+	s.LogFile = viper.GetString("app.redis.log.file")
+	s.Debug = viper.GetBool("app.redis.log.debug")
 
 	viper.WatchConfig()
 	log.Println("APP: Common Dashboard Backend")
@@ -66,11 +59,11 @@ func main() {
 	})
 
 	// Init logging
-	// logFile, err = os.OpenFile(s.LogFile, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
-	// if err != nil {
-	// 	log.Fatalf("error opening file: %v", err)
-	// }
-	// defer logFile.Close()
+	logFile, err = os.OpenFile(s.LogFile, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	if err != nil {
+		log.Fatalf("error opening file: %v", err)
+	}
+	defer logFile.Close()
 
 	log.SetOutput(logFile)
 	InitLogger(logFile, logFile, logFile, s.Debug)

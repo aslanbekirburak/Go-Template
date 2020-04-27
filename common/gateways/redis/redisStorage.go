@@ -1,8 +1,6 @@
 package redis
 
 import (
-	"common_dashboard_backend/entities"
-	"encoding/json"
 	"fmt"
 
 	. "github.com/go-redis/redis"
@@ -25,14 +23,9 @@ func GetRedisCommStorage() *RedisStorage {
 	return rsComm
 }
 
-func (rs RedisStorage) SetRedisTest(key string, data entities.DashboardPanel) error {
+func (rs RedisStorage) SetRedisTest(key string, data string) error {
 
-	value, err := json.Marshal(data)
-	if err != nil {
-		fmt.Println(err)
-		return err
-	}
-	err = rs.client.Set(key, value, 0).Err()
+	err := rs.client.Set(key, data, 0).Err()
 	if err != nil {
 		panic(err)
 	}
@@ -40,16 +33,11 @@ func (rs RedisStorage) SetRedisTest(key string, data entities.DashboardPanel) er
 	return nil
 }
 
-func (rs RedisStorage) GetRedisTest(key string) (data entities.DashboardPanel, err error) {
+func (rs RedisStorage) GetRedisTest(key string) (data string, err error) {
 
-	var dashboardData entities.DashboardPanel
-
-	res := rs.client.Get(key)
-	err = json.Unmarshal([]byte(res.Val()), &dashboardData)
+	res, err := rs.client.Get(key).Result()
 	if err != nil {
 		fmt.Println(err)
-		return dashboardData, err
 	}
-
-	return dashboardData, nil
+	return res, nil
 }

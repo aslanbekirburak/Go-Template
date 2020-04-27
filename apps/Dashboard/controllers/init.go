@@ -12,6 +12,8 @@ import (
 
 	. "common_dashboard_backend/common/logger"
 
+	// "github.com/xeipuuv/gojsonschema"
+
 	"github.com/gin-gonic/contrib/gzip"
 	"github.com/gin-gonic/gin"
 )
@@ -20,6 +22,19 @@ var DashboardUseCase interfaces.DashboardUseCases
 var secret = "developmentSecretIsNotSoSecret"
 
 // var MediaPath string
+
+const schema = `
+{
+	"type": "object",
+	"properties": {
+	  "x":      { "type": "number" },
+	  "y":     { "type": "number" },
+	  "width":   { "type": "number" },
+	  "height": { "type": "number" }
+	},
+	"required": ["x", "y","width","height"]
+  }
+`
 
 func StartApplicationBackend() {
 	// Creates a gin router with default middleware:
@@ -38,6 +53,8 @@ func StartApplicationBackend() {
 	DashboardUseCase = &interactors.DashboardInteractor{}
 
 	// MediaPath = mediaPath
+	//Compare schema and data
+	// loader := gojsonschema.NewStringLoader(`{"type": "string"}`)
 
 	// Listen and server on 0.0.0.0:8200
 	err := http.ListenAndServe(":8300", router)

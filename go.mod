@@ -17,5 +17,6 @@ require (
 	github.com/onsi/gomega v1.9.0 // indirect
 	github.com/rmulley/go-fast-sql v0.0.0-20171122183127-38f65a534024
 	github.com/spf13/viper v1.6.2
+	github.com/xeipuuv/gojsonschema v1.2.0
 	golang.org/x/crypto v0.0.0-20200323165209-0ec3e9974c59
 )
