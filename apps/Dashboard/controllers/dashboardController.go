@@ -13,6 +13,8 @@ type DashboardController struct{}
 
 func (dc DashboardController) createDashboardComponent(c *gin.Context) {
 	redisKeyStr := c.Param("redisKey")
+	namespace := c.Param("namespace")
+
 	body, err1 := ioutil.ReadAll(c.Request.Body)
 	if err1 != nil {
 		log.Fatal(err1)
@@ -20,7 +22,7 @@ func (dc DashboardController) createDashboardComponent(c *gin.Context) {
 	}
 
 	dashboardComponent := string(body)
-	err := DashboardUseCase.CreateComponent(dashboardComponent, redisKeyStr)
+	err := DashboardUseCase.CreateComponent(dashboardComponent, namespace+"_"+redisKeyStr)
 	if err != nil {
 		c.JSON(200, generateFailResponse(err))
 		return
@@ -32,7 +34,9 @@ func (dc DashboardController) createDashboardComponent(c *gin.Context) {
 
 func (dc DashboardController) getDashboardComponent(c *gin.Context) {
 	redisKeyStr := c.Param("redisKey")
-	val, err := DashboardUseCase.GetComponent(redisKeyStr)
+	namespace := c.Param("namespace")
+
+	val, err := DashboardUseCase.GetComponent(namespace + "_" + redisKeyStr)
 	if err != nil {
 		c.JSON(200, generateFailResponse(err))
 		return
