@@ -8,8 +8,6 @@ import (
 	"common_dashboard_backend/apps/Dashboard/interactors"
 	"common_dashboard_backend/apps/Dashboard/interfaces"
 
-	jwt "common_dashboard_backend/lib"
-
 	. "common_dashboard_backend/common/logger"
 
 	// "github.com/xeipuuv/gojsonschema"
@@ -70,7 +68,6 @@ func InitRoutesGroups(router *gin.Engine) (public, private *gin.RouterGroup) {
 	private = router.Group("/api/")
 	//test = router.Group("/api-test/")
 
-	private.Use(jwt.Auth(secret))
 	//private.Use(accessTypeAvailabilityCheck())
 	//private.Use(RoleCheck())
 	return
