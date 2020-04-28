@@ -5,6 +5,9 @@ import (
 )
 
 type DashboardUseCases interface {
-	CreateComponent(data string, redisKey string) *entities.ErrorType
+	CreateComponent(data, namespace, redisKey string) *entities.ErrorType
 	GetComponent(redisKey string) (data string, er *entities.ErrorType)
+	GetNamespace() (data []string, er *entities.ErrorType)
+	GetNameKeys(searchKey string) (data []string, er *entities.ErrorType)
+	DeleteComponent(namespace, redisKey string) *entities.ErrorType
 }

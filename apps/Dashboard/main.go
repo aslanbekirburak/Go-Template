@@ -7,6 +7,7 @@ import (
 	common "common_dashboard_backend/common/projectArch/interactors"
 	"log"
 	"os"
+	"strings"
 
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
@@ -39,6 +40,12 @@ func main() {
 
 	// Init configuration
 	viper.AddConfigPath("../../")
+
+	// env
+	viper.SetEnvPrefix("iugo_layout")
+	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
+	viper.AutomaticEnv()
+
 	// viper.AddConfigPath("./")
 	err = viper.ReadInConfig() // Find and read the config file
 	if err != nil {
@@ -46,11 +53,11 @@ func main() {
 		log.Fatal(err)
 	}
 
-	s.RedisHostProd = viper.GetString("app.redis.host.prod")
+	s.RedisHostProd = viper.GetString("app.redis.host")
 	s.RedisPort = viper.GetString("app.redis.port")
 
-	s.LogFile = viper.GetString("app.redis.log.file")
-	s.Debug = viper.GetBool("app.redis.log.debug")
+	s.LogFile = viper.GetString("app.log.file")
+	s.Debug = viper.GetBool("app.log.debug")
 
 	viper.WatchConfig()
 	log.Println("APP: Common Dashboard Backend")

@@ -2,9 +2,8 @@
 app:
   name: sync
   redis:
-    host:
-      comm: "127.0.0.1"
+    host: "127.0.0.1"
     port: "6379"
-    log:
-      debug: true
-      file: "common_dashboard_backend.log"  
+  log:
+    debug: true
+    file: "common_dashboard_backend.log"  
