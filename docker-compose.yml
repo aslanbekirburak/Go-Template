@@ -6,8 +6,12 @@ services:
     env_file: ".env"
     ports:
       - "8300:8300"
+    depends_on:
+      - redisdb
+    links:
+      - redisdb:redisdb
 
-  redis:
+  redisdb:
     image: redis
-    # ports:
-    #   - 6379:6379
+    ports:
+      - 6379:6379

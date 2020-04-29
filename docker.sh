@@ -11,9 +11,7 @@ then
 fi
 
 REGISTRY_IMAGE="$DOCKER_REGISTRY/$IMAGE_NAME:$IMAGE_VERSION"
-cd apps/Dashboard
-GOOS=linux GOARCH=amd64 go build
-cd ../../
+GOOS=linux GOARCH=amd64 go build ./apps/Dashboard
 docker build -t ${REGISTRY_IMAGE} ./
 
 docker push ${REGISTRY_IMAGE}
