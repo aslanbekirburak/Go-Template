@@ -2,14 +2,19 @@ version: "3"
 
 services:
   app:
-    build: "."
+    # build: "."
+    image: 104.248.249.210:5000/iugo-layout/backend:0.0.1
     env_file: ".env"
     ports:
-      - "8300:8300"
+      - 8300:8300
     depends_on:
       - redisdb
     links:
       - redisdb:redisdb
+  admin:
+    image: 104.248.249.210:5000/iugo-layout/admin-json-editor:0.0.1
+    ports:
+      - 8301:80
 
   redisdb:
     image: redis
