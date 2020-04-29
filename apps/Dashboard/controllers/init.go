@@ -39,6 +39,7 @@ func StartApplicationBackend() {
 	// logger and recovery (crash-free) middleware
 	//router := gin.LoggerWithWriter()
 	router := gin.New()
+	router.Static("/admin", "./admin-ui")
 
 	router.Use(gin.Recovery(), Logger(), Headers())
 	router.Use(gzip.Gzip(gzip.DefaultCompression))

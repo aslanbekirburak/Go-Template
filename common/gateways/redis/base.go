@@ -2,16 +2,18 @@ package redis
 
 import (
 	. "common_dashboard_backend/common/logger"
+	"fmt"
 
 	"github.com/go-redis/redis"
 )
 
 var clientComm *redis.Client
 
-func Init(addressComm string, addressProd string, port string) {
-
+func Init(host string, port string) {
+	redisAddr := host + ":" + port
+	fmt.Println(redisAddr)
 	clientComm = redis.NewClient(&redis.Options{
-		Addr:     addressComm + ":" + port,
+		Addr:     redisAddr,
 		Password: "", // no password set
 		DB:       0,  // use default DB
 	})

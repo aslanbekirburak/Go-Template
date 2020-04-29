@@ -39,6 +39,14 @@ func (di *DashboardInteractor) GetNamespace() (data []string, er *entities.Error
 	return data, nil
 }
 
+func (di *DashboardInteractor) SetNamespace(ns string) (er *entities.ErrorType) {
+	err := RedisCommStorage.SetRedisNamespaces(ns)
+	if err != nil {
+		return GetError(10010)
+	}
+	return nil
+}
+
 func (di *DashboardInteractor) GetNameKeys(searchKey string) (data []string, er *entities.ErrorType) {
 	data, err := RedisCommStorage.GetRedisKeys(searchKey)
 

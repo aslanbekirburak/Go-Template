@@ -12,6 +12,20 @@ import (
 
 type DashboardController struct{}
 
+func (dc DashboardController) createDashboardNamespace(c *gin.Context) {
+	namespace := c.Param("namespace")
+
+	err := DashboardUseCase.SetNamespace(namespace)
+
+	if err != nil {
+		c.JSON(200, generateFailResponse(err))
+		return
+	}
+
+	c.JSON(200, generateSuccessResponse("successfully created"))
+	return
+}
+
 func (dc DashboardController) createDashboardComponent(c *gin.Context) {
 	redisKeyStr := c.Param("redisKey")
 	namespace := c.Param("namespace")

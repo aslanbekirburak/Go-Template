@@ -21,6 +21,7 @@ func InitRoutes(public, private *gin.RouterGroup) {
 		public.GET("dashboardComponent/:namespace/:redisKey", dashboard.getDashboardComponent)
 		public.DELETE("dashboardComponent/:namespace/:redisKey", dashboard.deleteDashboardComponent)
 		public.GET("dashboardNamespaces", dashboard.getDashboardNamespaces)
+		public.POST("dashboardNamespaces/:namespace", dashboard.createDashboardNamespace)
 		public.GET("dashboardKeys/:redisKey", dashboard.getDashboardKeys)
 	}
 }

@@ -39,7 +39,8 @@ func main() {
 	// viper.SetConfigName("config.yml")
 
 	// Init configuration
-	viper.AddConfigPath("../../")
+	// viper.AddConfigPath("../../")
+	viper.AddConfigPath("./")
 
 	// env
 	viper.SetEnvPrefix("iugo_layout")
@@ -66,18 +67,18 @@ func main() {
 	})
 
 	// Init logging
-	logFile, err = os.OpenFile(s.LogFile, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
-	if err != nil {
-		log.Fatalf("error opening file: %v", err)
-	}
-	defer logFile.Close()
+	// logFile, err = os.OpenFile(s.LogFile, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	// if err != nil {
+	// 	log.Fatalf("error opening file: %v", err)
+	// }
+	// defer logFile.Close()
 
-	log.SetOutput(logFile)
-	InitLogger(logFile, logFile, logFile, s.Debug)
+	log.SetOutput(os.Stdout)
+	InitLogger(os.Stdout, os.Stdout, os.Stderr, s.Debug)
 
 	//redis initialization
 
-	redis.Init(s.RedisHostComm, s.RedisHostProd, s.RedisPort)
+	redis.Init(s.RedisHostProd, s.RedisPort)
 	common.RedisCommStorage = redis.GetRedisCommStorage()
 	defer redis.Close()
 
